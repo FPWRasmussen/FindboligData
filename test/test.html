@@ -28,16 +28,19 @@
                 <option value="avg_temp">Average Temperature</option>
                 <option value="population">Population</option>
                 <option value="elevation">Elevation</option>
-                <option value="lat">Latitude</option>
-                <option value="long">Longitude</option>
+                <option value="air_pressure">Air Pressure</option>
+                <option value="latitude">Latitude</option>
+                <option value="longitude">Longitude</option>
             </select>
     
             <label for="y-axis">Y-Axis:</label>
             <select id="y-axis">
-                <option value="population">Population</option>
                 <option value="avg_temp">Average Temperature</option>
+                <option value="population">Population</option>
                 <option value="elevation">Elevation</option>
                 <option value="air_pressure">Air Pressure</option>
+                <option value="latitude">Latitude</option>
+                <option value="longitude">Longitude</option>
             </select>
         </div>
     
@@ -64,6 +67,37 @@
 
 
     <div id="scatter-plot"></div>
+
+
+
+    <div class="controls">
+        <div class="row">
+            <label for="3d-category">City Category:</label>
+            <select id="3d-category">
+                <option value="A">Category A</option>
+                <option value="B">Category B</option>
+                <option value="C">Category C</option>
+            </select>
+
+            <label for="3d-color-attr">Color:</label>
+            <select id="3d-color-attr">
+                <option value="avgTemp">Average Temperature</option>
+                <option value="population">Population</option>
+                <option value="elevation">Elevation</option>
+                <option value="air_pressure">Air Pressure</option>
+            </select>
+
+            <label for="3d-size-attr">Size:</label>
+            <select id="3d-size-attr">
+                <option value="avgTemp">Average Temperature</option>
+                <option value="population">Population</option>
+                <option value="elevation">Elevation</option>
+                <option value="air_pressure">Air Pressure</option>
+            </select>
+        </div>
+    </div>
+    <div id="3d-plot" class="plot"></div>
+
 
 
     <script src="test.js"></script>
