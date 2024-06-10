@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gantt Chart Data</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/plotly.js@2.12.1/dist/plotly.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>     <!-- jQuery -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">     <!-- DataTables CSS and JS -->
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>     <!-- PapaParse for CSV parsing -->
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <table id="dataTable" class="display"></table>
+
+
+    <div class="controls">
+        <div class="row">
+            <label for="x-axis">X-Axis:</label>
+            <select id="x-axis">
+                <option value="avgTemp">Average Temperature</option>
+                <option value="population">Population</option>
+                <option value="elevation">Elevation</option>
+                <option value="lat">Latitude</option>
+                <option value="long">Longitude</option>
+            </select>
+    
+            <label for="y-axis">Y-Axis:</label>
+            <select id="y-axis">
+                <option value="population">Population</option>
+                <option value="avgTemp">Average Temperature</option>
+                <option value="elevation">Elevation</option>
+                <option value="air_pressure">Air Pressure</option>
+            </select>
+        </div>
+    
+        <div class="row">
+
+            <label for="color-attr">Color:</label>
+            <select id="color-attr">
+                <option value="avgTemp">Average Temperature</option>
+                <option value="population">Population</option>
+                <option value="elevation">Elevation</option>
+                <option value="air_pressure">Air Pressure</option>
+            </select>
+
+            <label for="size-attr">Size:</label>
+            <select id="size-attr">
+                <option value="population">Population</option>
+                <option value="avgTemp">Average Temperature</option>
+                <option value="elevation">Elevation</option>
+                <option value="air_pressure">Air Pressure</option>
+            </select>
+        </div>
+    </div>
+    
+
+
+    <div id="scatter-plot"></div>
+
+
+    <script src="test.js"></script>
+</body>
+</html>
