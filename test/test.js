@@ -1,6 +1,6 @@
 const githubUsername = 'FPWRasmussen';
-const repositoryName = 'Gantt-Chart';
-const csvFilePath = 'gantt.csv';
+const repositoryName = 'FindboligData';
+const csvFilePath = 'city_data.csv';
 
 $.ajax({
     url: `https://raw.githubusercontent.com/${githubUsername}/${repositoryName}/master/${csvFilePath}`,
@@ -61,9 +61,9 @@ function createScatterPlot(data) {
   // Assuming your CSV has columns 'x' and 'y' for x and y coordinates
   const xAxis = document.getElementById('x-axis').value;
 
-  const xValues = data.map(row => row.Completion);
+  const xValues = data.map(row => row.avg_temp);
   
-  const yValues = data.map(row => row.Completion);
+  const yValues = data.map(row => row.population);
 
   const trace = {
     x: xValues,
