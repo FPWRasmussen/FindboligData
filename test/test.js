@@ -121,9 +121,9 @@ function update3DPlot() {
 }
 function create3DPlot(data, categoryColumn, colorColumn, sizeColumn){
 
-    const filteredData = data.filter(c => c.categoryColumn === categoryColumn);
-    const colorValues = data.map(row => parseFloat(row[colorColumn]));
-    const sizeValues = data.map(row => parseFloat(row[sizeColumn]));
+    const filteredData = data.filter(c => c.category === categoryColumn);
+    const colorValues = filteredData.map(row => parseFloat(row[colorColumn]));
+    const sizeValues = filteredData.map(row => parseFloat(row[sizeColumn]));
   
     const maxSizeValue = Math.max(...sizeValues);
 
