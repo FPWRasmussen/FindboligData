@@ -6,8 +6,6 @@ import pytz
 import json
 import numpy as np
 
-# prop_names = ["Barfoeds Gård", "Bjarkeshus", "Den Sønderjyske By", "Firkløveren", "J.M. Thieles vej 7A", "Lauritz Sørensens Gård", "Lindehuset", "Lineagården", "Malthe Bruuns Gård", "Mønsterbo", "Møllehuset", "Rolfshus", "Storkereden", "Svalegården", "Trekanten", "Tvillingegården", "Wilkenbo"]
-
 usedColumns = ["propertyName",  "propertyYear",  
 "rents", 
 "rent", "aconto",
