@@ -119,7 +119,10 @@ fig3.update_layout(
         aspectmode='cube',
         xaxis=dict(title='Længdegrader'),
         yaxis=dict(title='Breddegrader'),
-        zaxis=dict(title='Etage'),
+        zaxis=dict(title='Etage', 
+                   tickmode='linear',
+                    tick0=0,
+                    dtick=1),
         bgcolor='rgba(0,0,0,0)'  # Transparent background
     ),
     title=dict(
@@ -127,9 +130,9 @@ fig3.update_layout(
         x=0.5,
         xanchor='center'
     ),
-    margin=dict(l=0, r=0, b=0, t=0)  # Adjust margins for better spacing
+    margin=dict(l=0, r=0, b=0, t=0),
 )
-
+fig3.update_scenes(xaxis_visible=False, yaxis_visible=False, zaxis_visible=True )
 st.plotly_chart(fig3, use_container_width=True)
 
 st.subheader('Cirkeldiagram over huslejeudgifter')
