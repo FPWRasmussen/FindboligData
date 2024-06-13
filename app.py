@@ -23,7 +23,7 @@ st.header("Analyse af Samtlige Ejendomme")
 st.markdown("Herunder kan du vælge hvilke ejendomme i Frederiksberg Boligfond du ønsker at se data for.")
 options = st.multiselect("Vælg Ejendomme",
                          sorted_prop_names,
-                        default=["Lineagården"])
+                        default=["Barfoeds Gård", "Bjarkeshus", "Den Sønderjyske By", "Firkløveren"])
 
 df_filtered = df[df["Ejendom"].isin(options)].reset_index()
 
@@ -42,13 +42,12 @@ fig1 = px.scatter(df_filtered, x=x_axis, y=y_axis,
                 color = color_axis ,
                 title=f'{x_axis} vs {y_axis}',
                 color_continuous_scale=px.colors.sequential.Plasma,
-                size_max=15, 
                 hover_name="Addresse")
 fig1.update_layout(
     coloraxis_colorbar=dict(tickformat='.0f'),
     xaxis=dict(tickformat='.0f'),  
     yaxis=dict(tickformat='.0f'))
-fig1.update_traces(marker={"size": 15, "opacity": 0.8},)
+fig1.update_traces(marker={"size": 10, "opacity": 0.8},)
 st.plotly_chart(fig1, use_container_width=True)
 
 
@@ -95,6 +94,7 @@ st.markdown("Her kan du se et 3D overblik over en specifik ejendom med dens fors
 
 
 df_single_filtered = df[df["Ejendom"] == options_3d]
+df_single_filtered.sort_values("Addresse", ascending=True, inplace=True)
 
 fig3 = px.scatter_3d(
     df_single_filtered,
@@ -109,16 +109,6 @@ fig3 = px.scatter_3d(
     hover_name=df_single_filtered["Addresse"],
     hover_data= {"longitude" : False, "latitude" : False, "Etage" : False},
 )
-
-def axes_style3d(bgcolor = "rgb(20, 20, 20)",
-                 gridcolor="rgb(150, 150, 150)", 
-                 zeroline=False): 
-    return dict(showbackground =True,
-                backgroundcolor=bgcolor,
-                gridcolor=gridcolor,
-                zeroline=False)
-
-my_axes = axes_style3d(bgcolor='rgba(0, 0, 0, 0)',  gridcolor="rgb(100, 100, 100)",) #transparent background color
 
 fig3.update_traces(marker=dict(size=10, opacity=0.8))
 fig3.update_layout(
@@ -161,7 +151,6 @@ selection = st.dataframe(df_table.drop(columns=["rents"]),
 if selection["selection"]["rows"]:
     rent_dict = df_table.at[selection["selection"]["rows"][0],"rents"]
     apartment_rents = pd.DataFrame([{'description': rent['description'], 'amount': rent['amount']['amount']} for rent in rent_dict])
-    apartment_rents.sort_values("amount", ascending=True, inplace=True)
 
     apartment_rents_amount = apartment_rents['amount']
     apartment_rents_description = apartment_rents['description']
