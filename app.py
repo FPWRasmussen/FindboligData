@@ -59,7 +59,7 @@ fig1.update_layout(
         ),
     xaxis=dict(tickformat='.0f'),  
     yaxis=dict(tickformat='.0f'),
-    margin=dict(l=0, r=0, b=20, t=0)
+    margin=dict(l=0, r=0, b=20, t=50)
     )
 
 fig1.update_traces(marker={"size": 10, "opacity": 0.8})
@@ -102,7 +102,7 @@ fig2.update_layout(
         ),
     xaxis=dict(tickformat='.0f'),  
     yaxis=dict(tickformat='.0f'),
-    margin=dict(l=0, r=0, b=20, t=0)
+    margin=dict(l=0, r=0, b=20, t=50)
     )
 fig2.update_traces(marker={"size": 15, "opacity": 0.8})
 st.plotly_chart(fig2, use_container_width=True)
@@ -130,7 +130,7 @@ fig3 = px.scatter_3d(
     y="latitude",
     z="Etage",
     color=color_3d,
-    height=600,
+    height=800,
     width=800,
     size_max=30,
     color_continuous_scale=px.colors.sequential.Plasma,
@@ -172,7 +172,7 @@ fig3.update_layout(
         x=0.5,
         xanchor='center'
     ),
-    margin=dict(l=0, r=0, b=0, t=0),
+    margin=dict(l=0, r=0, b=20, t=50),
 )
 fig3.update_scenes(xaxis_visible=False, yaxis_visible=False, zaxis_visible=True )
 st.plotly_chart(fig3, use_container_width=True)
