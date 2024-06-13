@@ -110,6 +110,16 @@ fig3 = px.scatter_3d(
     hover_data= {"longitude" : False, "latitude" : False, "Etage" : False},
 )
 
+def axes_style3d(bgcolor = "rgb(20, 20, 20)",
+                 gridcolor="rgb(150, 150, 150)", 
+                 zeroline=False): 
+    return dict(showbackground =True,
+                backgroundcolor=bgcolor,
+                gridcolor=gridcolor,
+                zeroline=False)
+
+my_axes = axes_style3d(bgcolor='rgba(0, 0, 0, 0)',  gridcolor="rgb(100, 100, 100)",) #transparent background color
+
 fig3.update_traces(marker=dict(size=10, opacity=0.8))
 fig3.update_layout(
     coloraxis_colorbar=dict(tickformat='.0f'),
@@ -119,7 +129,9 @@ fig3.update_layout(
         aspectmode='cube',
         xaxis=dict(title='Længdegrader'),
         yaxis=dict(title='Breddegrader'),
-        zaxis=dict(title='Etage', 
+        zaxis=dict(title='Etage',
+                   backgroundcolor='rgba(0, 0, 0, 0)',
+                    gridcolor="rgb(100, 100, 100)",
                    tickmode='linear',
                     tick0=0,
                     dtick=1),
