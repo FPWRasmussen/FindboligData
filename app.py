@@ -10,7 +10,7 @@ st.set_page_config(layout="centered")
 
 st.title('Frederiksberg Boligfond Leje')
 st.markdown("""
-Velkommen til vores interaktive side, hvor du kan få et overblik over huslejepriserne hos Frederiksberg Boligfond.
+Velkommen til denne interaktive side, hvor du kan få et overblik over huslejepriserne hos Frederiksberg Boligfond.
 Her kan du se detaljerede data om ejendommene, visualisere husleje og à conto udgifter, og få en forståelse af de forskellige lejemåls geografi.
 """)
 
@@ -44,10 +44,25 @@ fig1 = px.scatter(df_filtered, x=x_axis, y=y_axis,
                 color_continuous_scale=px.colors.sequential.Plasma,
                 hover_name="Addresse")
 fig1.update_layout(
-    coloraxis_colorbar=dict(tickformat='.0f'),
+    coloraxis_colorbar=dict(
+        orientation='h',  # Specify horizontal orientation
+        tickformat='.0f',
+        x=0.5,  
+        y=-0.5  
+    ),
+    legend=dict(
+            orientation="h",  # Horizontal legend
+            yanchor="bottom",
+            y=-0.5,
+            xanchor="center",
+            x=0.5
+        ),
     xaxis=dict(tickformat='.0f'),  
-    yaxis=dict(tickformat='.0f'))
-fig1.update_traces(marker={"size": 10, "opacity": 0.8},)
+    yaxis=dict(tickformat='.0f'),
+    margin=dict(l=0, r=0, b=20, t=0)
+    )
+
+fig1.update_traces(marker={"size": 10, "opacity": 0.8})
 st.plotly_chart(fig1, use_container_width=True)
 
 
@@ -70,11 +85,25 @@ fig2 = px.scatter_mapbox(df_map,
                             mapbox_style="carto-positron", 
                             zoom=15,
                             color_continuous_scale=px.colors.sequential.Plasma,
-                            height=600, width=1000)
+                            height=800, width=1000)
 fig2.update_layout(
-    coloraxis_colorbar=dict(tickformat='.0f'),
+    coloraxis_colorbar=dict(
+        orientation='h',  # Specify horizontal orientation
+        tickformat='.0f',
+        x=0.5,  
+        y=-0.2  
+    ),
+    legend=dict(
+            orientation="h",  # Horizontal legend
+            yanchor="bottom",
+            y=-0.2,
+            xanchor="center",
+            x=0.5
+        ),
     xaxis=dict(tickformat='.0f'),  
-    yaxis=dict(tickformat='.0f'))
+    yaxis=dict(tickformat='.0f'),
+    margin=dict(l=0, r=0, b=20, t=0)
+    )
 fig2.update_traces(marker={"size": 15, "opacity": 0.8})
 st.plotly_chart(fig2, use_container_width=True)
 
@@ -93,8 +122,7 @@ st.subheader('Overblik i 3D af ejendom')
 st.markdown("Her kan du se et 3D overblik over en specifik ejendom med dens forskellige etager og lejemål.")
 
 
-df_single_filtered = df[df["Ejendom"] == options_3d]
-df_single_filtered.sort_values("Addresse", ascending=True, inplace=True)
+df_single_filtered = df[df["Ejendom"] == options_3d].sort_values("Addresse", ascending=True, inplace=False)
 
 fig3 = px.scatter_3d(
     df_single_filtered,
@@ -111,8 +139,20 @@ fig3 = px.scatter_3d(
 )
 
 fig3.update_traces(marker=dict(size=10, opacity=0.8))
+
+
 fig3.update_layout(
-    coloraxis_colorbar=dict(tickformat='.0f'),
+    coloraxis_colorbar=dict(
+        orientation='h',  # Specify horizontal orientation
+        tickformat='.0f',
+        x=0.5,  
+        y=-0.1),    
+    legend=dict(
+        orientation="h",  # Horizontal legend
+        yanchor="bottom",
+        y=-0.1,
+        xanchor="center",
+        x=0.5),
     xaxis=dict(tickformat='.0f'),  
     yaxis=dict(tickformat='.0f'),
     scene=dict(
@@ -120,9 +160,9 @@ fig3.update_layout(
         xaxis=dict(title='Længdegrader'),
         yaxis=dict(title='Breddegrader'),
         zaxis=dict(title='Etage',
-                   backgroundcolor='rgba(0, 0, 0, 0)',
+                    backgroundcolor='rgba(0, 0, 0, 0)',
                     gridcolor="rgb(100, 100, 100)",
-                   tickmode='linear',
+                    tickmode='linear',
                     tick0=0,
                     dtick=1),
         bgcolor='rgba(0,0,0,0)'  # Transparent background
