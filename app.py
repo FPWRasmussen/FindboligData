@@ -1,7 +1,10 @@
-import streamlit as st
+import ast
+
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import streamlit as st
+
 from utils import get
 
 validAxis = ['Ejendom', 'Opførelsesår', 'Etage', 'Husleje (kr.)', 'À conto (kr.)', 'Areal (kvm)', 'Værelser', "Dage siden opdatering"]
@@ -201,6 +204,9 @@ selection = st.dataframe(df_table.drop(columns=["rents"]),
 
 if selection["selection"]["rows"]:
     rent_dict = df_table.at[selection["selection"]["rows"][0],"rents"]
+    if not isinstance(rent_dict, list):
+        rent_dict = ast.literal_eval(rent_dict)
+        
     print(type(rent_dict))
     print(rent_dict)
     
