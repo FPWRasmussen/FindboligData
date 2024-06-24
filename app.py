@@ -188,13 +188,42 @@ selection = st.dataframe(df_table.drop(columns=["rents"]),
                         hide_index=True,
                         column_config={"url": st.column_config.LinkColumn("URL")})
 
+# if selection["selection"]["rows"]:
+#     rent_dict = df_table.at[selection["selection"]["rows"][0],"rents"]
+#     print(type(rent_dict))
+#     print(rent_dict)
+#     apartment_rents = pd.DataFrame([{'description': rent['description'], 'amount': rent['amount']['amount']} for rent in rent_dict])
+
+#     apartment_rents_amount = apartment_rents['amount']
+#     apartment_rents_description = apartment_rents['description']
+#     total_rent = sum(apartment_rents_amount)
+
+
 if selection["selection"]["rows"]:
     rent_dict = df_table.at[selection["selection"]["rows"][0],"rents"]
-    apartment_rents = pd.DataFrame([{'description': rent['description'], 'amount': rent['amount']['amount']} for rent in rent_dict])
+    print(type(rent_dict))
+    print(rent_dict)
+    
+    # Add error handling and debugging
+    try:
+        apartment_rents = pd.DataFrame([{'description': rent['description'], 'amount': rent['amount']['amount']} for rent in rent_dict])
+        print("DataFrame created successfully:")
+        print(apartment_rents.head())
+        
+        apartment_rents_amount = apartment_rents['amount']
+        apartment_rents_description = apartment_rents['description']
+        total_rent = sum(apartment_rents_amount)
+        print(f"Total rent: {total_rent}")
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        print("Problematic rent entry:")
+        for rent in rent_dict:
+            try:
+                print({'description': rent['description'], 'amount': rent['amount']['amount']})
+            except:
+                print(f"Error in entry: {rent}")
 
-    apartment_rents_amount = apartment_rents['amount']
-    apartment_rents_description = apartment_rents['description']
-    total_rent = sum(apartment_rents_amount)
+    
     text=[f"{desc}<br>{amount:.2f} kr." for desc, amount in zip(apartment_rents_description, apartment_rents_amount)]
     
     fig4 = go.Figure(data=[go.Pie(

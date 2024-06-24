@@ -33,7 +33,8 @@ def get(prop_names):
                 
         res = json.loads(r.content)["results"]
         df = pd.DataFrame(res)
-    except:
+    except Exception as e:
+        print(f"Error: {e}")
         csv_url = "https://raw.githubusercontent.com/FPWRasmussen/FindboligData/main/full_findbolig.csv"
         df = pd.read_csv(csv_url)
 
