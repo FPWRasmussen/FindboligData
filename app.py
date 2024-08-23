@@ -220,6 +220,7 @@ if selection["selection"]["rows"]:
         apartment_rents_description = apartment_rents['description']
         total_rent = sum(apartment_rents_amount)
         print(f"Total rent: {total_rent}")
+        
     except Exception as e:
         print(f"An error occurred: {str(e)}")
         print("Problematic rent entry:")
